@@ -1,0 +1,379 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <meta name="robots" content="index,follow" />
+  <script type="text/javascript" src="lib/OpenLayers-2.12/OpenLayers.js"></script> 
+  <script type="text/javascript" src="map.js"></script> 
+  <script type="text/javascript">
+	function toggleVisibility(tagId) { // Change visibility small JS script
+	var tagToToggle;
+	tagToToggle = document.getElementById(tagId);
+	if (tagToToggle.style.display == "none") {
+	tagToToggle.style.display = "inline";
+	} else {
+	tagToToggle.style.display = "none";
+	}
+	// For IE only
+	if (tagToToggle.style.visibility == "hidden") {
+	tagToToggle.style.visibility = "visible";
+	} else {
+	tagToToggle.style.visibility = "hidden";
+	}
+	}
+  </script>
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style-ol.css" type="text/css" />
+  <title>Carte des alternatives - asbl RCR</title>
+ </head>
+  <body onload="init()">
+   <table style="width:100%; height:100%; overflow:hidden;" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+     <td style="vertical-align: top; width:230px; height:100%">
+      <div style="width:99%; height:99%; overflow:auto" id="list">
+Cliquez sur les ic&ocirc;nes des GAC <img width="12px" height="12px" src="./symbols/GAC.png">, SEL <img width="12px" height="12px" src="./symbols/SEL.png">, RES <img width="12px" height="12px" src="./symbols/RES.png">, Potagers <img width="12px" height="12px" src="./symbols/Potager.png">, Donneries <img width="12px" height="12px" src="./symbols/Donnerie.png"> et RepairCafé <img width="12px" height="12px" src="./symbols/RepairCafe.png"> pour afficher les informations.
+       <ul style="list-style-type: none;">
+       <div>
+  	<a href="javascript:toggleVisibility('Bru'); javascript:toggleVisibility('Bru1'); javascript:toggleVisibility('Bru2')">
+         <li>
+          <div id="Bru1" style="visibility: visible; display: inline;" >> </div><div id="Bru2" style="visibility: hidden; display: none;" >v </div>Bruxelles-Capitale</a><img style="cursor: pointer" width="12px" height="12px" src="./symbols/zoom.png" onclick="setBruExtent()"></div>
+           <div id="Bru" style="visibility: hidden; display: none;">
+            <ul style="list-style-type: none;">
+<li>> Anderlecht <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,255)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,255)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,255)"></li>
+<li>> Auderghem <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,253)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,253)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,253)"></li>
+<li>> Berchem <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,259)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,259)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,259)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,259)"></li>
+<li>> Bruxelles <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,256)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,256)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,256)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,256)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,256)"></li>
+<li>> Etterbeek <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,267)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,267)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,267)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,267)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,267)"></li>
+<li>> Evere <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,264)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,264)"></li>
+<li>> Forest <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,254)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,254)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,254)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,254)"></li>
+<li>> Ganshoren <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,260)"></li>
+<li>> Ixelles <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,268)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,268)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,268)"></li>
+<li>> Jette <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,261)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,261)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,261)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,261)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,261)"></li>
+<li>> Koekelberg <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,258)"></li>
+<li>> Laeken <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,277)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,277)"></li>
+<li>> Molenbeek <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,257)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,257)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,257)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,257)"></li>
+<li>> Neder-Over-Heembeek <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,272)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,272)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,272)"></li>
+<li>> Rhode-Saint-Genèse <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,280)"></li>
+<li>> Saint-Gilles <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,269)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,269)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,269)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,269)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,269)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,269)"></li>
+<li>> Saint-Josse <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,262)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,262)"></li>
+<li>> Schaerbeek <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,263)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,263)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,263)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,263)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,263)"></li>
+<li>> Uccle <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,251)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,251)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,251)"></li>
+<li>> Watermael-Boitsfort <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,252)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,252)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,252)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,252)"></li>
+<li>> Woluwe-Saint-Lambert <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,265)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,265)"></li>
+<li>> Woluwe-Saint-Pierre <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,266)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,266)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,266)"></li>
+<li>> Leuven <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,273)"></li>
+<li>> Linkebeek <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,271)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,271)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,271)"></li>
+ </ul>
+ </div>
+ </li>
+ <div>
+ 	<a href="javascript:toggleVisibility('BW'); javascript:toggleVisibility('BW1'); javascript:toggleVisibility('BW2')">
+         <li>
+          <div id="BW1" style="visibility: visible; display: inline;" >> </div><div id="BW2" style="visibility: hidden; display: none;" >v </div>Brabant-Wallon</a><img style="cursor: pointer" width="12px" height="12px" src="./symbols/zoom.png" onclick="setBWExtent()"></div>
+           <div id="BW" style="visibility: hidden; display: none;">
+            <ul style="list-style-type: none;">
+<li>> Archennes <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,160)"></li>
+<li>> Beauvechain <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,163)"></li>
+<li>> Bierges <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,136)"></li>
+<li>> Biez <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,151)"></li>
+<li>> Blanmont <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,274)"></li>
+<li>> Bornival <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,238)"></li>
+<li>> Bousval <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,246)"></li>
+<li>> Braine-l'Alleud <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,240)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,240)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,240)"></li>
+<li>> Braine-le-Château <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,236)"></li>
+<li>> Chastre <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,145)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,145)"></li>
+<li>> Chaumont-Gistoux <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,152)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,152)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,152)"></li>
+<li>> Court-Saint-Etienne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,142)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,142)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,142)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,142)"></li>
+<li>> Genappe <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,245)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,245)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,245)"></li>
+<li>> Genval <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,242)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,242)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,242)"></li>
+<li>> Grez-Doiceau <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,161)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,161)"></li>
+<li>> Incourt <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,150)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,150)"></li>
+<li>> Ittre <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,237)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,237)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,237)"></li>
+<li>> Jodoigne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,153)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,153)"></li>
+<li>> La Hulpe <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,182)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,182)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,182)"></li>
+<li>> Lasne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,244)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,244)"></li>
+<li>> Limal <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,138)"></li>
+<li>> Limelette <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,139)"></li>
+<li>> Louvain-la-Neuve <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,140)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,140)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,140)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,140)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,140)"></li>
+<li>> Mont-Saint-Guibert <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,143)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,143)"></li>
+<li>> Nethen <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,162)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,162)"></li>
+<li>> Nil-Saint-Vincent-Saint-Martin <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,144)"></li>
+<li>> Nivelles <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,239)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,239)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,239)"></li>
+<li>> Orp-Jauche <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,155)"></li>
+<li>> Orp-le-Grand <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,154)"></li>
+<li>> Ottignies <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,141)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,141)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,141)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,141)"></li>
+<li>> Pécrot <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,275)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,275)"></li>
+<li>> Profonsart <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,270)"></li>
+<li>> Ramillies <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,156)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,156)"></li>
+<li>> Rebecq <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,235)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,235)"></li>
+<li>> Rixensart <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,243)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,243)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,243)"></li>
+<li>> Rosières <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,159)"></li>
+<li>> Thorembais-Saint-Trond <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,149)"></li>
+<li>> Vieusart <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,280)"></li>
+<li>> Villers-la-Ville <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,247)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,247)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,247)"></li>
+<li>> Walhain <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,146)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,146)"></li>
+<li>> Waterloo <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,241)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,241)"></li>
+<li>> Wavre <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,137)"></li>
+ </ul>
+ </div>
+ </li>
+ <div>
+ 	<a href="javascript:toggleVisibility('Hainaut'); javascript:toggleVisibility('Hainaut1'); javascript:toggleVisibility('Hainaut2')">
+         <li>
+          <div id="Hainaut1" style="visibility: visible; display: inline;" >> </div><div id="Hainaut2" style="visibility: hidden; display: none;" >v </div>Hainaut</a><img style="cursor: pointer" width="12px" height="12px" src="./symbols/zoom.png" onclick="setHainautExtent()"></div>
+           <div id="Hainaut" style="visibility: hidden; display: none;">
+            <ul style="list-style-type: none;">
+<li>> Aiseau-Presles <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,32)"></li>
+<li>> Ath <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,232)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,232)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,232)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,232)"></li>
+<li>> Beaumont <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,171)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,171)"></li>
+<li>> Beloeil <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,219)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,219)"></li>
+<li>> Blaton <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,218)"></li>
+<li>> Boussu <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,225)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,225)"></li>
+<li>> Braine-le-Comte <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,249)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,249)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,249)"></li>
+<li>> Chapelle-lez-Herlaimont <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,204)"></li>
+<li>> Charleroi <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,211)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,211)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,211)"></li>
+<li>> Châtelet <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,210)"></li>
+<li>> Chièvres <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,231)"></li>
+<li>> Colfontaine <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,222)"></li>
+<li>> Comines <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,178)"></li>
+<li>> Couillet <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,209)"></li>
+<li>> Courcelles <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,206)"></li>
+<li>> Dottignies <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,189)"></li>
+<li>> Dour <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,229)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,229)"></li>
+<li>> Ecaussinnes <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,248)"></li>
+<li>> Ellezelles <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,180)"></li>
+<li>> Elouges <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,228)"></li>
+<li>> Erquelinnes <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,170)"></li>
+<li>> Estaimpuis <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,188)"></li>
+<li>> Familleureux <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,196)"></li>
+<li>> Fayt-lez-Manage <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,199)"></li>
+<li>> Fleurus <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,29)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,29)"></li>
+<li>> Flobecq <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,181)"></li>
+<li>> Frameries <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,221)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,221)"></li>
+<li>> Frasnes-lez-Anvaing <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,192)"></li>
+<li>> Froidchapelle <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,167)"></li>
+<li>> Gaurain-Ramecroix <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,194)"></li>
+<li>> Gerpinnes <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,176)"></li>
+<li>> Gilly <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,212)"></li>
+<li>> Ham-sur-Heure <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,175)"></li>
+<li>> Hennuyères <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,250)"></li>
+<li>> Hensies <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,226)"></li>
+<li>> Herseaux <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,187)"></li>
+<li>> Hollain <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,185)"></li>
+<li>> Honnelles <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,280)"></li>
+<li>> Jumet <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,214)"></li>
+<li>> La Louvière <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,200)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,200)"></li>
+<li>> Le Roeulx <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,195)"></li>
+<li>> Lens <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,233)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,233)"></li>
+<li>> Les-Bons-Villers <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,217)"></li>
+<li>> Lessines <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,230)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,230)"></li>
+<li>> Leuze-en-Hainaut <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,193)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,193)"></li>
+<li>> Liberchies <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,216)"></li>
+<li>> Lobbes <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,172)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,172)"></li>
+<li>> Lodelinsart <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,213)"></li>
+<li>> Manage <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,198)"></li>
+<li>> Momignies <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,169)"></li>
+<li>> Mons <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,220)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,220)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,220)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,220)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,220)"></li>
+<li>> Mont-sur-Marchienne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,208)"></li>
+<li>> Montigny-le-Tilleul <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,174)"></li>
+<li>> Mouscron <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,179)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,179)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,179)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,179)"></li>
+<li>> Néchin <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,190)"></li>
+<li>> Péruwelz <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,186)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,186)"></li>
+<li>> Pont-à-Celles <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,203)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,203)"></li>
+<li>> Quaregnon <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,223)"></li>
+<li>> Quiévrain <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,227)"></li>
+<li>> Ransart <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,215)"></li>
+<li>> Roselies <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,31)"></li>
+<li>> Roux <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,207)"></li>
+<li>> Saint-Ghislain <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,224)"></li>
+<li>> Seneffe <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,197)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,197)"></li>
+<li>> Soignies <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,234)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,234)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,234)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,234)"></li>
+<li>> Thuin <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,173)"></li>
+<li>> Tournai <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,191)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,191)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,191)"></li>
+<li>> Trazegnies <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,205)"></li>
+ </ul>
+ </div>
+ </li>
+ <div>
+ 	<a href="javascript:toggleVisibility('Liege'); javascript:toggleVisibility('Liege1'); javascript:toggleVisibility('Liege2')">
+         <li>
+          <div id="Liege1" style="visibility: visible; display: inline;" >> </div><div id="Liege2" style="visibility: hidden; display: none;" >v </div>Province de Liège</a><img style="cursor: pointer" width="12px" height="12px" src="./symbols/zoom.png" onclick="setLiegeExtent()"></div>
+           <div id="Liege" style="visibility: hidden; display: none;">
+            <ul style="list-style-type: none;">
+<li>> Alleur <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,46)"></li>
+<li>> Amay <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,3)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,3)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,3)"></li>
+<li>> Ampsin <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,2)"></li>
+<li>> Angleur <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,55)"></li>
+<li>> Ans <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,47)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,47)"></li>
+<li>> Avin <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,34)"></li>
+<li>> Aywaille <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,81)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,81)"></li>
+<li>> Bassenge <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,73)"></li>
+<li>> Berloz <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,40)"></li>
+<li>> Beyne-Heusay <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,64)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,64)"></li>
+<li>> Blégny <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,62)"></li>
+<li>> Boncelles <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,52)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,52)"></li>
+<li>> Braives <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,36)"></li>
+<li>> Bressoux <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,60)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,60)"></li>
+<li>> Chênée <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,57)"></li>
+<li>> Clavier <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,5)"></li>
+<li>> Comblain-au-Pont <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,78)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,78)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,78)"></li>
+<li>> Couthuin <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,11)"></li>
+<li>> Crisnée <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,44)"></li>
+<li>> Dison <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,69)"></li>
+<li>> Donceel <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,41)"></li>
+<li>> Esneux <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,79)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,79)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,79)"></li>
+<li>> Fallais <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,38)"></li>
+<li>> Flémalle <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,49)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,49)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,49)"></li>
+<li>> Fléron <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,63)"></li>
+<li>> Grâce-Hollogne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,48)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,48)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,48)"></li>
+<li>> Grandville <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,43)"></li>
+<li>> Grivegnée <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,56)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,56)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,56)"></li>
+<li>> Haccourt <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,74)"></li>
+<li>> Hannut <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,33)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,33)"></li>
+<li>> Harzé <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,82)"></li>
+<li>> Héron <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,10)"></li>
+<li>> Herve <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,67)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,67)"></li>
+<li>> Hognoul <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,45)"></li>
+<li>> Huy <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,0)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,0)"></li>
+<li>> Jalhay <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,77)"></li>
+<li>> Jehay-Bodegnée <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,42)"></li>
+<li>> Jemeppe <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,50)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,50)"></li>
+<li>> Jupille-sur-Meuse <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,61)"></li>
+<li>> Lens-Saint-Remy <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,37)"></li>
+<li>> Liège <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,59)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,59)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,59)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,59)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,59)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,59)"></li>
+<li>> Longfaye <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,279)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,279)"></li>
+<li>> Lontzen <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,75)"></li>
+<li>> Malmédy <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,88)"></li>
+<li>> Marchin <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,14)"></li>
+<li>> Neupré <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,53)"></li>
+<li>> Ombret-Rawsa <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,4)"></li>
+<li>> Ougrée <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,51)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,51)"></li>
+<li>> Pepinster <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,71)"></li>
+<li>> Saint-Nicolas <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,58)"></li>
+<li>> Seraing <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,97)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,97)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,97)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,97)"></li>
+<li>> Soumagne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,66)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,66)"></li>
+<li>> Spa <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,85)"></li>
+<li>> Sprimont <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,80)"></li>
+<li>> Stavelot <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,87)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,87)"></li>
+<li>> Stembert <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,76)"></li>
+<li>> Stoumont <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,83)"></li>
+<li>> Theux <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,86)"></li>
+<li>> Thimister <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,68)"></li>
+<li>> Tilff <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,54)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,54)"></li>
+<li>> Trois-Ponts <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,84)"></li>
+<li>> Vaux-et-Borset <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,39)"></li>
+<li>> Vaux-sous-Chèvremont <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,65)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,65)"></li>
+<li>> Verviers <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,70)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,70)"></li>
+<li>> Visé <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,72)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,72)"></li>
+<li>> Waimes <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,89)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,89)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,89)"></li>
+<li>> Wanze <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,1)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,1)"></li>
+ </ul>
+ </div>
+ </li>
+ <div>
+ 	<a href="javascript:toggleVisibility('Lux'); javascript:toggleVisibility('Lux1'); javascript:toggleVisibility('Lux2')">
+         <li>
+          <div id="Lux1" style="visibility: visible; display: inline;" >> </div><div id="Lux2" style="visibility: hidden; display: none;" >v </div>Province de Luxembourg</a><img style="cursor: pointer" width="12px" height="12px" src="./symbols/zoom.png" onclick="setLuxExtent()"></div>
+           <div id="Lux" style="visibility: hidden; display: none;">
+            <ul style="list-style-type: none;">
+<li>> Anlier <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,127)"></li>
+<li>> Arlon <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,131)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,131)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,131)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,131)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,131)"></li>
+<li>> Barvaux <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,91)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,91)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,91)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,91)"></li>
+<li>> Bastogne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,166)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,166)"></li>
+<li>> Bertogne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,202)"></li>
+<li>> Bertrix <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,116)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,116)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,116)"></li>
+<li>> Bouillon <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,183)"></li>
+<li>> Durbuy <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,90)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,90)"></li>
+<li>> Etalle <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,129)"></li>
+<li>> Fauvillers <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,165)"></li>
+<li>> Gouvy <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,95)"></li>
+<li>> Habay <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,130)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,130)"></li>
+<li>> Harre <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,93)"></li>
+<li>> Herbeumont <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,184)"></li>
+<li>> Léglise <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,126)"></li>
+<li>> Libin <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,114)"></li>
+<li>> Libramont <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,115)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,115)"></li>
+<li>> Limerlé <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,96)"></li>
+<li>> Marche-en-Famenne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,103)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,103)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,103)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,103)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,103)"></li>
+<li>> Messancy <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,135)"></li>
+<li>> Neufchâteau <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,164)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,164)"></li>
+<li>> Paliseul <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,112)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,112)"></li>
+<li>> Pocheresse <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,111)"></li>
+<li>> Redu <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,113)"></li>
+<li>> Rendeux <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,92)"></li>
+<li>> Saint-Hubert <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,108)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,108)"></li>
+<li>> Saint-Léger <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,134)"></li>
+<li>> Sainte-Ode <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,201)"></li>
+<li>> Tellin <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,107)"></li>
+<li>> Tintigny <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,128)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,128)"></li>
+<li>> Vielsalm <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,94)"></li>
+<li>> Villers-devant-Orval <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,132)"></li>
+<li>> Virton <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,133)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,133)"></li>
+ </ul>
+ </div>
+ </li>
+ <div>
+ 	<a href="javascript:toggleVisibility('Namur'); javascript:toggleVisibility('Namur1'); javascript:toggleVisibility('Namur2')">
+         <li>
+          <div id="Namur1" style="visibility: visible; display: inline;" >> </div><div id="Namur2" style="visibility: hidden; display: none;" >v </div>Province de Namur</a><img style="cursor: pointer" width="12px" height="12px" src="./symbols/zoom.png" onclick="setNamurExtent()"></div>
+           <div id="Namur" style="visibility: hidden; display: none;">
+            <ul style="list-style-type: none;">
+<li>> Andenne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,9)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,9)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,9)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,9)"></li>
+<li>> Anhee <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,122)"></li>
+<li>> Arsimont <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,30)"></li>
+<li>> Assesse <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,98)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,98)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,98)"></li>
+<li>> Beauraing <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,104)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,104)"></li>
+<li>> Belgrade <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,21)"></li>
+<li>> Bouge <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,17)"></li>
+<li>> Ciney <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,100)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,100)"></li>
+<li>> Corroy-le-Château <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,27)"></li>
+<li>> Couvin <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,168)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,168)"></li>
+<li>> Dinant <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,124)"></li>
+<li>> Eghezée <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,157)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,157)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,157)"></li>
+<li>> Emptinne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,99)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,99)"></li>
+<li>> Evrehailles <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,120)"></li>
+<li>> Fernelmont <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,158)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,158)"></li>
+<li>> Floreffe <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,22)"></li>
+<li>> Florennes <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,118)"></li>
+<li>> Forville <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,35)"></li>
+<li>> Gedinne <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,110)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,110)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,110)"></li>
+<li>> Gelbressée <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,18)"></li>
+<li>> Gembloux <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,147)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,147)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,147)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,147)"></li>
+<li>> Gesves <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,7)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,7)"></li>
+<li>> Grand-Leez <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,148)"></li>
+<li>> Haillot <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,13)"></li>
+<li>> Hamois <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,101)"></li>
+<li>> Hastière <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,125)"></li>
+<li>> Havelange <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,6)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,6)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,6)"></li>
+<li>> Houyet <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,105)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,105)"></li>
+<li>> Jambes <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,16)"></li>
+<li>> La Bruyère <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,19)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,19)"></li>
+<li>> Lustin <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,15)"></li>
+<li>> Mazy <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,26)"></li>
+<li>> Mettet <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,117)"></li>
+<li>> Namur <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,20)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RES.png" onclick="selectlist(6,20)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,20)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,20)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,20)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,20)"></li>
+<li>> Ohey <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,8)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,8)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,8)"></li>
+<li>> Onhaye <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,123)"></li>
+<li>> Perwez <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,12)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,12)"></li>
+<li>> Philippeville <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,119)"></li>
+<li>> Profondeville <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,23)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,23)"></li>
+<li>> Rochefort <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,106)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,106)"></li>
+<li>> Salzinnes <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,276)"></li>
+<li>> Sombreffe <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,28)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Donnerie.png" onclick="selectlist(7,28)"></li>
+<li>> Somme-Leuze <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,102)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,102)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,102)"></li>
+<li>> Spy <img style="cursor: pointer" width="12px" height="12px" src="./symbols/RepairCafe.png" onclick="selectlist(8,24)"></li>
+<li>> Temploux <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,25)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,25)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,25)"></li>
+<li>> Walcourt <img style="cursor: pointer" width="12px" height="12px" src="./symbols/GAC.png" onclick="selectlist(4,177)"> <img style="cursor: pointer" width="12px" height="12px" src="./symbols/SEL.png" onclick="selectlist(5,177)"></li>
+<li>> Yvoir <img style="cursor: pointer" width="12px" height="12px" src="./symbols/Potager.png" onclick="selectlist(3,121)"></li>
+          </div>
+         </li>
+        </div>
+       </ul>
+      </div>
+     </td>
+     <td style="height:100%; overflow: hidden;">
+      <div style="width:100%; height:100%; overflow: hidden;" id="map"></div>
+     </td>
+    </tr>
+   </table> 
+  </body>
+</html>

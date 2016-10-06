@@ -1,0 +1,61 @@
+/************* Annuaire CSS ASBL RCR - Julien Minet - Octobre 2013 ************/
+
+body {
+	margin: 16px;
+	padding: 6px;
+	text-align: justify;
+	font-family: Ubuntu, Arial, Georgia, sans-serif;
+	font-size: 11px;
+	color: #111;
+}
+
+h1 {
+	background-color: #aaa;
+}
+
+h2 {
+	background-color: #ccc;
+}
+
+table {
+	padding: 0px;
+	margin-bottom: 14px;
+        width:100%;
+	
+}
+
+#localite {
+	font-size: 16px;
+	font-weight: bold;
+	color: #555;
+	text-align: right;
+	width: 50%;
+	white-space: nowrap;
+}
+
+#nom {
+	font-size: 16px;
+	font-weight: bold;
+	color: #555;
+	width: 50%;
+}
+
+#web {
+	color: #555;
+	width: 100%;
+	font-size: 11px;
+}
+
+#texte {
+	width: 100%;
+	text-align: justify;
+	font-size: 11px;
+}
+
+a:link {
+	color: #555;
+}
+
+footer {
+	page-break-after:always;
+}

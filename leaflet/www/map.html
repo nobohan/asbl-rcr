@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="title" content="RCR webmap" />
+  <meta name="robots" content="index,follow" /> 
+  <meta name="author" content="Julien" , julien_wa@yahoo.fr />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script src="lib/leaflet.js"></script>
+  <!--script src="http://code.jquery.com/jquery-2.1.0.min.js"></script-->
+  <script src="lib/jquery.min.js"></script>
+  <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+  <script type="text/javascript" src="geojson/communes.geojson.js"></script> 
+  <script type="text/javascript" src="geojson/localites.geojson.js"></script> 
+  <script type="text/javascript" src="map_rcr.js" ></script> 
+  <script type="text/javascript" src="lib/leaflet.ajax.js"></script>
+  <link rel="stylesheet" href="css/style7.css" type="text/css" />
+  <link rel="stylesheet" href="lib/leaflet.css" />
+  </head>
+  <body style="height:100%;" onload="init()"> 
+   <div style="width:100%; height:100%;" id="map"></div>
+   <div id="button"><a onclick:"javascript:showPopup(60);">showpopup</a></div>
+  </body>
+</html>
+

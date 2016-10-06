@@ -1,0 +1,98 @@
+/**
+ * CSS Reset
+ * From Blueprint reset.css
+ * http://blueprintcss.googlecode.com
+ */
+
+a:hover{ 
+	color: orange;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+div
+{
+position: relative;
+}
+
+div#popup {
+	font-size: small;
+	font-family: 'Open Sans',Arial,Helvetica,sans-serif;
+	color: rgb(25, 25, 25);
+	text-align: center;
+}
+
+div#popup_wp {
+	font-size: small;
+    font-weight: normal;
+	font-family: 'Open Sans',Arial,Helvetica,sans-serif;
+	color: rgb(25, 25, 25);
+	text-align: center;
+}
+
+div#popup_partner {
+	font-size: x-small;
+	font-family: 'Open Sans',Arial,Helvetica,sans-serif;
+	color: rgb(81, 81, 81);
+	text-align: center;
+}
+
+.leaflet-control-layers-overlays img{
+	width: 15px;
+	height: 15px;
+	/* move the icon to the bottom a little bit*/
+}
+
+div.leaflet-popup
+{
+z-index: 99999999;
+}
+
+img.leaflet-marker-icon
+{
+opacity: 0.7;
+transition: .2s all ease-in;
+height: 12px;
+width: 12px;
+margin: 2px;
+}
+
+img.leaflet-marker-icon:hover
+{
+opacity: 1;
+width: 16px;
+height: 16px;
+margin: -8px;
+border-radius: 50%;
+border: 8px solid white;
+}
+
+.potager, .leaflet-container a.potager
+{
+color: #9f772b;
+}
+
+.repaircafe, .leaflet-container a.repaircafe
+{
+color: #9c2986;
+}
+
+.gac, .leaflet-container a.gac
+{
+color: #679b3d;
+}
+
+.donnerie, .leaflet-container a.donnerie
+{
+color: #1a9191;
+}
+
+.res, .leaflet-container a.res
+{
+color: #e1bd25;
+}
+
+.sel, .leaflet-container a.sel
+{
+color: #c24a2a;
+}

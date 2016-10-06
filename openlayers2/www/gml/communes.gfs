@@ -1,0 +1,25 @@
+<GMLFeatureClassList>
+  <GMLFeatureClass>
+    <Name>communes</Name>
+    <ElementPath>communes</ElementPath>
+    <DatasetSpecificInfo>
+      <FeatureCount>281</FeatureCount>
+      <ExtentXMin>316250.52465</ExtentXMin>
+      <ExtentXMax>713181.96499</ExtentXMax>
+      <ExtentYMin>6359712.07234</ExtentYMin>
+      <ExtentYMax>6606138.37612</ExtentYMax>
+    </DatasetSpecificInfo>
+    <PropertyDefn>
+      <Name>NAME</Name>
+      <ElementPath>NAME</ElementPath>
+      <Type>String</Type>
+      <Width>26</Width>
+    </PropertyDefn>
+    <PropertyDefn>
+      <Name>PROVINCE</Name>
+      <ElementPath>PROVINCE</ElementPath>
+      <Type>String</Type>
+      <Width>2</Width>
+    </PropertyDefn>
+  </GMLFeatureClass>
+</GMLFeatureClassList>

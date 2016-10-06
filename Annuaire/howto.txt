@@ -1,0 +1,10 @@
+Janvier 2014
+------------
+
+Mettre le fichier RCR_carto.xls dans le même dossier que le script faire_annuaire.py
+
+Faire tourner le script avec IDLE
+
+Ouvrir les fichiers annuaire.html et annuaire-prive.html dans Firefox et imprimer (CTRL+P) dans un fichier. Cela fonctionne mieux avec Firefox qu'avec Google Chrome pour gérer les entetes et pied-de-page. 
+
+
