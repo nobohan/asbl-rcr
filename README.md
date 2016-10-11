@@ -12,8 +12,6 @@ Ceci est le dépôt de l'ensemble des codes utilisés pour faire la carte des al
   * Faire tourner le script avec IDLE
   * Ouvrir les fichiers `annuaire.html` et `annuaire-prive.html` dans Firefox et imprimer (CTRL+P) dans un fichier. Cela fonctionne mieux avec Firefox qu'avec Google Chrome pour gérer les entetes et pied-de-page. 
 
-* Donnees: Dossier de backup. Versions des fichiers Excel RCR_carto.xls utilisés pour faire la cartographie et les annuaires jusque fin 2011. 
-
 * openlayers2: Dossier relatif à la carte faite avec OpenLayers2 (système appliqué de 2009 à 2011). Comprend le dossier web `www` et un dossier de documentation comprenant un descriptif détaillé de la carto avec OpenLayers2.
 
 * leaflet: Dossier relatif à la carte faite avec Leaflet et la base de données des alternatives (système appliqué à partir de nov. 2011). Comprend le dossier web `www`. 
